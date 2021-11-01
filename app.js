@@ -1,3 +1,8 @@
+/** importar o dotenv para usar as variáveis de ambiente */
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 import express from 'express';
 
 /** importando o homeRouter */
