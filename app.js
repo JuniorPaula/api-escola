@@ -3,6 +3,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+/** importando a conexao */
+import './src/database';
+
 import express from 'express';
 
 /** importando o homeRouter */
