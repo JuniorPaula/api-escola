@@ -1,6 +1,8 @@
 /** importar o sequelize e o model pra criar a class de alunos */
 import Sequelize, { Model } from 'sequelize';
 
+import appConfig from '../config/appConfig';
+
 /** exportar a class aluno que extend model */
 export default class Foto extends Model {
   static init(sequelize) {
@@ -21,6 +23,12 @@ export default class Foto extends Model {
           notEmpty: {
             msg: 'Campo não pode ficar vazio!',
           },
+        },
+      },
+      url: {
+        type: Sequelize.VIRTUAL,
+        get() {
+          return `${appConfig.url}/images/${this.getDataValue('filename')}`;
         },
       },
     }, {
