@@ -69,4 +69,9 @@ export default class Aluno extends Model {
     });
     return this;
   }
+
+  /** método resposnsável por associar o aluno a varias fotos */
+  static associate(models) {
+    return this.hasMany(models.Foto, { foreignKey: 'aluno_id' });
+  }
 }
