@@ -15,19 +15,19 @@ const router = new Router();
 router.post('/', userController.store);
 
 /** rota responsável por listar todos os usuários */
-router.get('/', loginRequired, userController.index);
+// router.get('/', userController.index);
 
 /** rota responsável por listar um usuários
  * -> recebe parametro id
  */
-router.get('/:id', userController.show);
+// router.get('/:id', userController.show);
 
 /** rota responsável por atualizar um usuário
  * -> recebe parametro id
  */
-router.put('/:id', userController.update);
+router.put('/', loginRequired, userController.update);
 
 /** rota responsável por deletar um usuário */
-router.delete('/:id', userController.delete);
+router.delete('/', loginRequired, userController.delete);
 
 export default router;
