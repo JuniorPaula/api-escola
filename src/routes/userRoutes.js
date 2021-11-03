@@ -15,7 +15,7 @@ const router = new Router();
 router.post('/', userController.store);
 
 /** rota responsável por listar todos os usuários */
-// router.get('/', userController.index);
+router.get('/', userController.index);
 
 /** rota responsável por listar um usuários
  * -> recebe parametro id
