@@ -9,7 +9,10 @@ import './src/database';
 import express from 'express';
 
 /** importando o homeRouter */
-import homeRouter from './src/routes/homeRoutes';
+import homeRoutes from './src/routes/homeRoutes';
+
+/** importando a rota user */
+import userRoutes from './src/routes/userRoutes';
 
 /** Class resposssável por instancia o App/express */
 class App {
@@ -29,7 +32,8 @@ class App {
 
   /** método responssável por chamar as rotas */
   routes() {
-    this.app.use('/', homeRouter);
+    this.app.use('/', homeRoutes);
+    this.app.use('/users/', userRoutes);
   }
 }
 
