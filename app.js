@@ -17,6 +17,9 @@ import userRoutes from './src/routes/userRoutes';
 /** importando a rota de token */
 import tokenRoutes from './src/routes/tokenRoutes';
 
+/** importando a rota de alunos */
+import alunoRoutes from './src/routes/alunoRoutes';
+
 /** Class resposssável por instancia o App/express */
 class App {
   /** assim que a class for instaciada, o construtor vai fazer
@@ -38,6 +41,7 @@ class App {
     this.app.use('/', homeRoutes);
     this.app.use('/users/', userRoutes);
     this.app.use('/tokens/', tokenRoutes);
+    this.app.use('/alunos/', alunoRoutes);
   }
 }
 
