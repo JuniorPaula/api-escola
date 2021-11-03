@@ -4,6 +4,9 @@ import { Router } from 'express';
 /** importando a class userControllers ja instânciada */
 import userController from '../controllers/UserController';
 
+/** importando o middleware de token */
+import loginRequired from '../middlewares/loginRequired';
+
 /** instanciando o Router */
 const router = new Router();
 
@@ -12,7 +15,7 @@ const router = new Router();
 router.post('/', userController.store);
 
 /** rota responsável por listar todos os usuários */
-router.get('/', userController.index);
+router.get('/', loginRequired, userController.index);
 
 /** rota responsável por listar um usuários
  * -> recebe parametro id
