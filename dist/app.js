@@ -6,7 +6,12 @@ _dotenv2.default.config();
 /** importando a conexao */
 require('./database');
 
+/** importar o express */
 var _express = require('express'); var _express2 = _interopRequireDefault(_express);
+
+/** importar o cors para política de header */
+var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
+var _helmet = require('helmet'); var _helmet2 = _interopRequireDefault(_helmet);
 
 var _path = require('path');
 
@@ -25,6 +30,23 @@ var _alunoRoutes = require('./routes/alunoRoutes'); var _alunoRoutes2 = _interop
 /** importando a rota de cadastro das imagens */
 var _photoRoutes = require('./routes/photoRoutes'); var _photoRoutes2 = _interopRequireDefault(_photoRoutes);
 
+/** dominios liberador pelos cors */
+const whiteList = [
+  'https://escola.luckwebdeveloper.tech',
+  'http://localhost:3000',
+];
+
+/** configurações do cors */
+const corsOptions = {
+  origin(origin, callback) {
+    if (whiteList.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS.'));
+    }
+  },
+};
+
 /** Class resposssável por instancia o App/express */
 class App {
   /** assim que a class for instaciada, o construtor vai fazer
@@ -37,6 +59,8 @@ class App {
 
   /** método responssável por setar express.urlenconder  e express.json() */
   middlewares() {
+    this.app.use(_cors2.default.call(void 0, corsOptions));
+    this.app.use(_helmet2.default.call(void 0, ));
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
     this.app.use('/images/', _express2.default.static(_path.resolve.call(void 0, __dirname, '..', 'uploads', 'images')));
