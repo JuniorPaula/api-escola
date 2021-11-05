@@ -6,7 +6,12 @@ dotenv.config();
 /** importando a conexao */
 import './database';
 
+/** importar o express */
 import express from 'express';
+
+/** importar o cors para política de header */
+import cors from 'cors';
+import helmet from 'helmet';
 
 import { resolve } from 'path';
 
@@ -25,6 +30,23 @@ import alunoRoutes from './routes/alunoRoutes';
 /** importando a rota de cadastro das imagens */
 import photoRoutes from './routes/photoRoutes';
 
+/** dominios liberador pelos cors */
+const whiteList = [
+  'https://escola.luckwebdeveloper.tech',
+  'http://localhost:3000',
+];
+
+/** configurações do cors */
+const corsOptions = {
+  origin(origin, callback) {
+    if (whiteList.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS.'));
+    }
+  },
+};
+
 /** Class resposssável por instancia o App/express */
 class App {
   /** assim que a class for instaciada, o construtor vai fazer
@@ -37,6 +59,8 @@ class App {
 
   /** método responssável por setar express.urlenconder  e express.json() */
   middlewares() {
+    this.app.use(cors(corsOptions));
+    this.app.use(helmet());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use('/images/', express.static(resolve(__dirname, '..', 'uploads', 'images')));
