@@ -12,7 +12,7 @@ const router = new Router();
 
 /** rota responsável por criar um usuario através
  *  do método store do userControler */
-router.post('/', loginRequired, userController.store);
+router.post('/', userController.store);
 
 /** rota responsável por listar todos os usuários */
 // router.get('/', userController.index);
