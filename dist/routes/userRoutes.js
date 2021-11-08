@@ -12,7 +12,7 @@ const router = new (0, _express.Router)();
 
 /** rota responsável por criar um usuario através
  *  do método store do userControler */
-router.post('/', _loginRequired2.default, _UserController2.default.store);
+router.post('/', _UserController2.default.store);
 
 /** rota responsável por listar todos os usuários */
 // router.get('/', userController.index);
